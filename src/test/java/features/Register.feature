@@ -1,42 +1,42 @@
 Feature: Register new user
 
-  Background: navigate to url and goto register page
-  Given user is on the homepage of HealthCare App
-  Then user will be on the homepage
-  When user clicks on the register link on the navbar
-  Then user will be navigated to the register page
+  Background: user navigates to the Healthcare app and then to the Register page
+    Given user is on the homepage of the portal
+
+    When user navigates to the Register page
+    Then user should see the Register header
 
 
-  Scenario: verify a new user registration
+  Scenario: verify user can register themself
 
-    When user enters firstname lastname email password
+    When user provides their <firstname>, <lastname>, <email> and <password>
     | firstname | lastname | email          | password  |
     | Hani      | Chatha   | hani@gmail.com | Pass1234@ |
-    And user clicks on register button
-    Then user will be registered successfully
+    Then user should be registered successfully
 
-  Scenario: verify already registered user can not re-register
 
-    When user enters firstname lastname email password
+  Scenario: verify that already registered user can not re-register
+
+    When user provides their <firstname>, <lastname>, <email> and <password>
       | firstname | lastname | email          | password  |
       | Hani      | Chatha   | hani@gmail.com | Pass1234@ |
-    And user clicks on register button
-    Then user will be shown an error message stating user already exists
+    Then user should see an error message stating that user already exists
 
-  Scenario: verify user cannot register with simple password
 
-    When user enters firstname lastname email password
+  Scenario: verify that user can not register with simple(non-alphanumeric) password
+
+    When user provides their <firstname>, <lastname>, <email> and <password>
       | firstname | lastname | email          | password  |
       | Jon       | Abc      | jon@gmail.com  | 12345678 |
-    And user clicks on register button
-    Then user will be shown an error message stating alphanumeric password is required
+    Then user should see an error message stating alphanumeric password is required
 
-  Scenario: verify user registration without providing mandatory fields
+
+  Scenario: verify user can not proceed without filling mandatory fields
 
     When user clicks on register button
-    Then user will be shown an error message stating that mandatory fields are missing
+    Then user should see an error message stating that mandatory fields are missing
 
-  Scenario: verify user can navigate to login page
+  Scenario: verify user can navigate to login page from Register page
 
-    When user clicks on the login link
-    Then user will be navigated to the Login page
+    When user navigates to the login page from register page
+    Then user should see the Login header
