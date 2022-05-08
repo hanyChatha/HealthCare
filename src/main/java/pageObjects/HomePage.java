@@ -10,13 +10,13 @@ public class HomePage {
     WebDriver driver;
 
     @FindBy(linkText = "Log out")
-    WebElement logoutLink;
+    public WebElement logoutButton;
 
     @FindBy(linkText = "Register")
-    WebElement registerLink;
+    public WebElement registerLink;
 
     @FindBy(linkText = "Log In")
-    WebElement loginLink;
+    public WebElement loginLink;
 
 
     public HomePage(WebDriver driver)
@@ -35,8 +35,9 @@ public class HomePage {
         loginLink.click();
     }
 
-    public boolean verifyLogout()
+
+    public boolean logoutButtonCheck()
     {
-        return logoutLink.isDisplayed();
+        return logoutButton.isDisplayed();
     }
 }

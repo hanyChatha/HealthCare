@@ -10,7 +10,7 @@ Feature: Login to HealthCare App
 
     When user logins with the <email>, <password>
       | email         | password     |
-      | hani@mail.com | Pass1234     |
+      | hani@mail.com | Pass1234@     |
     Then user should be logged in successfully
 
   Scenario: verify user can not login with invalid password

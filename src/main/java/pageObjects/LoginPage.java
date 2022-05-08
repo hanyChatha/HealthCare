@@ -8,22 +8,22 @@ import org.openqa.selenium.support.PageFactory;
 public class LoginPage {
     WebDriver driver;
 
-    @FindBy(className = "pt-2 h3 heading-text")
-    WebElement loginCheckText;
+    @FindBy(className = "heading-text")
+    public WebElement loginCheckText;
 
     @FindBy(xpath = "//*[@id=\"root\"]/div/div[2]/div/div/div/div[2]/div[1]/div[1]/input")
-    WebElement emailText;
+    public WebElement emailText;
 
     @FindBy(xpath = "//*[@id=\"root\"]/div/div[2]/div/div/div/div[2]/div[1]/div[2]/input")
-    WebElement passwordText;
+    public WebElement passwordText;
 
-    @FindBy(className = "btn btn-primary btn-md")
-    WebElement loginButton;
+    @FindBy(className = "btn-primary")
+    public WebElement loginButton;
 
     @FindBy(linkText = "Register Here")
-    WebElement registerLink;
+    public WebElement registerLink;
 
-    LoginPage(WebDriver driver)
+    public LoginPage(WebDriver driver)
     {
         this.driver = driver;
         PageFactory.initElements(driver,this);
@@ -53,4 +53,5 @@ public class LoginPage {
     {
         return loginCheckText.getText();
     }
+
 }

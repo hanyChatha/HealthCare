@@ -16,8 +16,8 @@ public class BasePage {
     public static void initPages()
     {
         homePage = new HomePage(DriverFactory.driver);
-        //loginPage = new LoginPage(DriverFactory.driver);
-        //registerPage = new RegisterPage(DriverFactory.driver);
+        loginPage = new LoginPage(DriverFactory.driver);
+        registerPage = new RegisterPage(DriverFactory.driver);
         driverUtils = new DriverUtils();
     }
 

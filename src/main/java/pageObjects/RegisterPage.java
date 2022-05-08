@@ -9,29 +9,29 @@ public class RegisterPage {
 
     WebDriver driver;
 
-    @FindBy(className = "pt-2 h3 heading-text")
-    WebElement registerCheckText;
+    @FindBy(className = "heading-text")
+    public WebElement registerCheckText;
 
     @FindBy(xpath = "//*[@id=\"root\"]/div/div[2]/div/div/div/div[2]/div/div[1]/input")
-    WebElement firstname;
+    public WebElement firstname;
 
     @FindBy(xpath = "//*[@id=\"root\"]/div/div[2]/div/div/div/div[2]/div/div[2]/input")
-    WebElement lastname;
+    public WebElement lastname;
 
     @FindBy(xpath = "//*[@id=\"root\"]/div/div[2]/div/div/div/div[2]/div/div[3]/input")
-    WebElement emailText;
+    public WebElement emailText;
 
     @FindBy(xpath = "//*[@id=\"root\"]/div/div[2]/div/div/div/div[2]/div/div[4]/input")
-    WebElement passwordText;
+    public WebElement passwordText;
 
-    @FindBy(className = "btn btn-primary btn-md")
-    WebElement registerButton;
+    @FindBy(className = "btn-primary")
+    public WebElement registerButton;
 
     @FindBy(linkText = " Login")
-    WebElement loginLink;
+    public WebElement loginLink;
 
 
-    RegisterPage(WebDriver driver)
+    public RegisterPage(WebDriver driver)
     {
         this.driver = driver;
         PageFactory.initElements(driver,this);
