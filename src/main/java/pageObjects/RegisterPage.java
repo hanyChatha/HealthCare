@@ -9,6 +9,9 @@ public class RegisterPage {
 
     WebDriver driver;
 
+    @FindBy (className = "Toastify__toast-body")
+    public WebElement toastMessage;
+
     @FindBy(className = "heading-text")
     public WebElement registerCheckText;
 
@@ -27,7 +30,7 @@ public class RegisterPage {
     @FindBy(className = "btn-primary")
     public WebElement registerButton;
 
-    @FindBy(linkText = " Login")
+    @FindBy(xpath = "//*[@id=\"root\"]/div/div[2]/div/div/div/div[3]/span/a")
     public WebElement loginLink;
 
 
@@ -72,4 +75,8 @@ public class RegisterPage {
         return registerCheckText.getText();
     }
 
+    public String getToastMessage()
+    {
+        return toastMessage.getText();
+    }
 }

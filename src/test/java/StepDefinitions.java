@@ -10,7 +10,8 @@ public class StepDefinitions {
     String actualPageTitle;
     String actualLoginText;
     String actualRegisterText;
-    String actualEmailInUseMsg;
+    String wrongPasswordMsg;
+    String actualToastMsg;
 
 // Login page
 @Given("user is on the homepage of the portal")
@@ -52,8 +53,11 @@ public void user_is_on_the_homepage_of_the_portal() {
     }
 
     @Then("user should see an error message stating username\\/password incorrect")
-    public void user_should_see_an_error_message_stating_username_password_incorrect() {
+    public void user_should_see_an_error_message_stating_username_password_incorrect()
+    {
 
+        wrongPasswordMsg = BasePage.loginPage.getToastMessage();
+        Assertions.assertEquals(DriverFactory.properties.getProperty("wrongPasswordMsg"),wrongPasswordMsg);
 
     }
 
@@ -100,11 +104,15 @@ public void user_is_on_the_homepage_of_the_portal() {
 
     @Then("user should see an error message stating that user already exists")
     public void user_should_see_an_error_message_stating_that_user_already_exists() {
+        actualToastMsg = BasePage.registerPage.getToastMessage();
+        Assertions.assertEquals(DriverFactory.properties.getProperty("expectedEmailInUse"),actualToastMsg);
 
     }
 
     @Then("user should see an error message stating alphanumeric password is required")
     public void user_should_see_an_error_message_stating_alphanumeric_password_is_required() {
+        actualToastMsg = BasePage.registerPage.getToastMessage();
+        Assertions.assertEquals(DriverFactory.properties.getProperty("expectedAlphanumericPwdMsg"),actualToastMsg);
 
     }
 
@@ -117,6 +125,8 @@ public void user_is_on_the_homepage_of_the_portal() {
 
     @Then("user should see an error message stating that mandatory fields are missing")
     public void user_should_see_an_error_message_stating_that_mandatory_fields_are_missing() {
+        actualToastMsg = BasePage.registerPage.getToastMessage();
+        Assertions.assertEquals(DriverFactory.properties.getProperty("mandatoryFieldsMsg"),actualToastMsg);
 
     }
 

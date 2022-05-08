@@ -8,6 +8,9 @@ import org.openqa.selenium.support.PageFactory;
 public class LoginPage {
     WebDriver driver;
 
+    @FindBy (xpath = "//*[@id=\"et19c10\"]/div[1]/div[2]")
+    public WebElement toastMessage;
+
     @FindBy(className = "heading-text")
     public WebElement loginCheckText;
 
@@ -52,6 +55,11 @@ public class LoginPage {
     public String getLoginText()
     {
         return loginCheckText.getText();
+    }
+
+    public String getToastMessage()
+    {
+        return toastMessage.getText();
     }
 
 }

@@ -11,7 +11,7 @@ Feature: Register new user
 
     When user provides their <firstname>, <lastname>, <email> and <password>
     | firstname | lastname | email          | password  |
-    | Hani      | Chatha   | hani@gmail.com | Pass1234@ |
+    | Hani      | Chatha   | mani@gmail.com | Pass1234@ |
     Then user should be registered successfully
 
 
@@ -19,7 +19,7 @@ Feature: Register new user
 
     When user provides their <firstname>, <lastname>, <email> and <password>
       | firstname | lastname | email          | password  |
-      | Hani      | Chatha   | hani@gmail.com | Pass1234@ |
+      | Hani      | Chatha   | hani@mail.com | Pass1234@ |
     Then user should see an error message stating that user already exists
 
 

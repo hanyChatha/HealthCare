@@ -1,5 +1,9 @@
 package utils;
 
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+
 public class DriverUtils {
 
     public void navigateToUrl(String url)
@@ -12,8 +16,5 @@ public class DriverUtils {
         return DriverFactory.driver.getTitle();
     }
 
-    public String getAlertTextMessage()
-    {
-        return DriverFactory.driver.switchTo().alert().getText();
-    }
+
 }
