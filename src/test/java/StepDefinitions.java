@@ -12,47 +12,119 @@ public class StepDefinitions {
     String actualRegisterText;
     String actualEmailInUseMsg;
 
-    @Given("user is on the homepage of the portal")
-    public void user_is_on_the_homepage_of_the_portal() {
+// Login page
+@Given("user is on the homepage of the portal")
+public void user_is_on_the_homepage_of_the_portal() {
 
-    }
+    BasePage.driverUtils.navigateToUrl(DriverFactory.properties.getProperty("url"));
+
+}
 
     @When("user navigates to the login page")
     public void user_navigates_to_the_login_page() {
+
+        BasePage.homePage.clickLoginLink();
 
     }
 
     @Then("user should see the Login header")
     public void user_should_see_the_login_header() {
 
+        actualLoginText = BasePage.loginPage.getLoginText();
+        Assertions.assertEquals(DriverFactory.properties.getProperty("expectedLoginText"),actualLoginText);
+
     }
 
-    @When("user logins with the {string}, {string}")
-    public void user_logins_with_the(String string, String string2) {
+    @When("user logins with the <email>, <password>")
+    public void user_logins_with_the_email_password(io.cucumber.datatable.DataTable dataTable) {
 
+        BasePage.loginPage.enterEmail(dataTable.cell(1,0));
+        BasePage.loginPage.enterPassword(dataTable.cell(1,1));
+        BasePage.loginPage.clickLoginButton();
     }
 
     @Then("user should be logged in successfully")
-    public void user_should_be_logged_in_successfully(io.cucumber.datatable.DataTable dataTable) {
+    public void user_should_be_logged_in_successfully()// throws InterruptedException
+    {
+        //Thread.sleep(100);
+        Assertions.assertTrue(BasePage.homePage.logoutButtonCheck());
 
     }
 
     @Then("user should see an error message stating username\\/password incorrect")
-    public void user_should_see_an_error_message_stating_username_password_incorrect(io.cucumber.datatable.DataTable dataTable) {
+    public void user_should_see_an_error_message_stating_username_password_incorrect() {
+
 
     }
 
-    @When("user navigates to the register page")
-    public void user_navigates_to_the_register_page() {
+    @When("user navigates from login to the Register page")
+    public void user_navigates_from_login_to_the_register_page() {
+
+        BasePage.homePage.clickRegisterLink();
 
     }
 
     @Then("user should see the Register header")
     public void user_should_see_the_register_header() {
 
+        actualRegisterText = BasePage.registerPage.getRegisterCheckText();
+        Assertions.assertEquals(DriverFactory.properties.getProperty("expectedRegisterText"),actualRegisterText);
+
     }
 
+// Register feature
 
+    @When("user navigates to the Register page")
+    public void user_navigates_to_the_register_page() {
+        BasePage.homePage.clickRegisterLink();
+
+    }
+
+    @When("user provides their <firstname>, <lastname>, <email> and <password>")
+    public void user_provides_their_firstname_lastname_email_and_password(io.cucumber.datatable.DataTable dataTable) {
+
+        BasePage.registerPage.enterFirstname(dataTable.cell(1,0));
+        BasePage.registerPage.enterLastname(dataTable.cell(1,1));
+        BasePage.registerPage.enterEmail(dataTable.cell(1,2));
+        BasePage.registerPage.enterPassword(dataTable.cell(1,3));
+
+        BasePage.registerPage.clickRegisterButton();
+    }
+
+    @Then("user should be registered successfully")
+    public void user_should_be_registered_successfully() {
+
+        Assertions.assertTrue(BasePage.homePage.logoutButtonCheck());
+
+    }
+
+    @Then("user should see an error message stating that user already exists")
+    public void user_should_see_an_error_message_stating_that_user_already_exists() {
+
+    }
+
+    @Then("user should see an error message stating alphanumeric password is required")
+    public void user_should_see_an_error_message_stating_alphanumeric_password_is_required() {
+
+    }
+
+    @When("user clicks on register button")
+    public void user_clicks_on_register_button() {
+
+        BasePage.registerPage.clickRegisterButton();
+
+    }
+
+    @Then("user should see an error message stating that mandatory fields are missing")
+    public void user_should_see_an_error_message_stating_that_mandatory_fields_are_missing() {
+
+    }
+
+    @When("user navigates to the login page from register page")
+    public void user_navigates_to_the_login_page_from_register_page() {
+
+        BasePage.registerPage.clickLoginLink();
+    }
 
 
 
