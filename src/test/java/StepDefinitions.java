@@ -3,6 +3,7 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.jupiter.api.Assertions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import utils.DriverFactory;
 import utils.DriverUtils;
 
@@ -10,7 +11,6 @@ public class StepDefinitions {
     String actualPageTitle;
     String actualLoginText;
     String actualRegisterText;
-    String wrongPasswordMsg;
     String actualToastMsg;
 
 // Login page
@@ -47,19 +47,27 @@ public void user_is_on_the_homepage_of_the_portal() {
     @Then("user should be logged in successfully")
     public void user_should_be_logged_in_successfully()// throws InterruptedException
     {
-        //Thread.sleep(100);
+
         Assertions.assertTrue(BasePage.homePage.logoutButtonCheck());
 
     }
 
-    @Then("user should see an error message stating username\\/password incorrect")
-    public void user_should_see_an_error_message_stating_username_password_incorrect()
-    {
+    @Then("user should see an error message stating password is incorrect")
+    public void user_should_see_an_error_message_stating_password_is_incorrect() {
 
-        wrongPasswordMsg = BasePage.loginPage.getToastMessage();
-        Assertions.assertEquals(DriverFactory.properties.getProperty("wrongPasswordMsg"),wrongPasswordMsg);
+        actualToastMsg = BasePage.loginPage.getWrongPasswordMessage();
+        Assertions.assertEquals(DriverFactory.properties.getProperty("wrongPasswordMsg"),actualToastMsg);
 
     }
+
+    @Then("user should see an error message stating username is incorrect")
+    public void user_should_see_an_error_message_stating_username_is_incorrect() {
+
+        actualToastMsg = BasePage.loginPage.getWrongUsernamedMessage();
+        Assertions.assertEquals(DriverFactory.properties.getProperty("wrongUsernameMsg"),actualToastMsg);
+
+    }
+
 
     @When("user navigates from login to the Register page")
     public void user_navigates_from_login_to_the_register_page() {

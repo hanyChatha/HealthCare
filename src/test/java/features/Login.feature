@@ -18,7 +18,7 @@ Feature: Login to HealthCare App
     When user logins with the <email>, <password>
       | email         | password     |
       | hani@mail.com | 1234         |
-    Then user should see an error message stating username/password incorrect
+    Then user should see an error message stating password is incorrect
 
 
   Scenario: verify user can not login with invalid credentials
@@ -26,7 +26,7 @@ Feature: Login to HealthCare App
     When user logins with the <email>, <password>
       | email         | password     |
       | abc.com       | Pass1234     |
-    Then user should see an error message stating username/password incorrect
+    Then user should see an error message stating username is incorrect
 
 
   Scenario: verify user can navigate to register page from login page
